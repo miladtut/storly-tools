@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>حذف الحساب والبيانات | Storely Account Deletion</title>
+  <meta name="description" content="صفحة طلب حذف الحساب والبيانات المرتبطة به في منصة وتطبيق ستورلي - Official Storely Account and Data Deletion Request Page">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --danger: #ef4444;
+      --danger-light: #fef2f2;
+      --danger-border: #fca5a5;
+      --accent: #10b981;
+      --accent-light: #ecfdf5;
+      
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-subtle: #f1f5f9;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-faint: #94a3b8;
+      
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-ar: 'Cairo', system-ui, sans-serif;
+      --font-en: 'Inter', system-ui, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b0f19;
+      --card-bg: #131b2e;
+      --card-subtle: #1a233a;
+      --border: #24304f;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      --primary-light: rgba(37, 99, 235, 0.15);
+      --danger-light: rgba(239, 68, 68, 0.15);
+      --danger-border: rgba(239, 68, 68, 0.3);
+      --accent-light: rgba(16, 185, 129, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-ar);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 16px 60px;
+    }
+
+    body[dir="ltr"] {
+      font-family: var(--font-en);
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-btn {
+      background: var(--card-subtle);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .lang-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .main-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 24px;
+    }
+
+    .danger-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--danger-light);
+      border: 1px solid var(--danger-border);
+      color: var(--danger);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .method-box {
+      background: var(--card-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 22px;
+      margin: 20px 0;
+    }
+
+    .method-title {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .steps-list {
+      margin: 12px 0 12px 24px;
+      padding-inline-start: 12px;
+      color: var(--text-muted);
+    }
+    .steps-list li {
+      margin-bottom: 8px;
+    }
+    .steps-list li strong {
+      color: var(--text);
+    }
+
+    .btn-email-request {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--danger);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 24px;
+      border-radius: var(--radius-sm);
+      margin-top: 12px;
+      box-shadow: 0 4px 10px rgba(239, 68, 68, 0.25);
+    }
+    .btn-email-request:hover {
+      background: #dc2626;
+      text-decoration: none;
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.92rem;
+    }
+    .info-table th, .info-table td {
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      text-align: start;
+    }
+    .info-table th {
+      background: var(--card-subtle);
+      color: var(--text);
+      font-weight: 700;
+    }
+    .info-table td {
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-faint);
+      font-size: 0.85rem;
+      margin-top: auto;
+      padding-top: 24px;
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    body[data-lang="ar"] .lang-en-only { display: none !important; }
+    body[data-lang="en"] .lang-ar-only { display: none !important; }
+  </style>
+</head>
+<body data-lang="ar" dir="rtl" data-theme="dark">
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header-bar">
+      <a href="/" class="brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          </svg>
+        </div>
+        <span>Storely</span>
+      </a>
+
+      <div class="controls">
+        <button type="button" class="lang-btn active" id="btn-ar" onclick="setLang('ar')">العربية</button>
+        <button type="button" class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
+      </div>
+    </header>
+
+    <!-- Main Content Card -->
+    <main class="main-card">
+      <div class="danger-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <span class="lang-ar-only">التحكم بالبيانات وحذف الحساب</span>
+        <span class="lang-en-only">Data Control & Account Deletion</span>
+      </div>
+
+      <h1 class="lang-ar-only">طلب حذف حسابك والبيانات المرتبطة به في Storely</h1>
+      <h1 class="lang-en-only">Request Storely Account and Data Deletion</h1>
+
+      <p class="lang-ar-only">
+        نحترم في <strong>ستورلي (Storely)</strong> حقك الكامل في خصوصيتك والتحكم ببياناتك وفق اللائحة العامة لحماية البيانات (GDPR) وسياسات Google Play. نتيح لك طريقتين بسيطتين وسريعتين لحذف حسابك ومسح كافة بياناتك نهائياً:
+      </p>
+      <p class="lang-en-only">
+        At <strong>Storely</strong>, we firmly respect your right to privacy and total control over your personal data under GDPR and Google Play policies. We offer two quick and transparent methods to permanently delete your account and all associated data:
+      </p>
+
+      <!-- Option 1: Inside App -->
+      <div class="method-box">
+        <div class="method-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <span class="lang-ar-only">الطريقة الأولى: الحذف الفوري من داخل تطبيق Storely</span>
+          <span class="lang-en-only">Method 1: Instant Deletion Inside the Storely App</span>
+        </div>
+        <p class="lang-ar-only" style="margin-bottom: 8px;">يمكنك حذف حسابك في أي وقت مباشرة من هاتفك باتباع الخطوات التالية:</p>
+        <p class="lang-en-only" style="margin-bottom: 8px;">You can delete your account at any time directly from your device following these steps:</p>
+        <ol class="steps-list">
+          <li class="lang-ar-only">افتح تطبيق <strong>Storely</strong> على هاتفك.</li>
+          <li class="lang-en-only">Open the <strong>Storely</strong> app on your device.</li>
+
+          <li class="lang-ar-only">انتقل إلى تبويب <strong>"الملف الشخصي" (Profile)</strong> أو <strong>"الإعدادات"</strong>.</li>
+          <li class="lang-en-only">Go to your <strong>Profile</strong> or <strong>Settings</strong>.</li>
+
+          <li class="lang-ar-only">اختر <strong>"الأمان والخصوصية"</strong> ثم انقر على <strong>"حذف الحساب والبيانات"</strong>.</li>
+          <li class="lang-en-only">Select <strong>Security & Privacy</strong> and tap <strong>Delete Account and Data</strong>.</li>
+
+          <li class="lang-ar-only">أكّد رغبتك بالحذف، وسيتم شطب حسابك وبياناتك فوراً.</li>
+          <li class="lang-en-only">Confirm the prompt, and your account and data will be wiped immediately.</li>
+        </ol>
+      </div>
+
+      <!-- Option 2: Via Web / Email -->
+      <div class="method-box">
+        <div class="method-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span class="lang-ar-only">الطريقة الثانية: طلب الحذف عبر البريد الإلكتروني (بدون الحاجة لفتح التطبيق)</span>
+          <span class="lang-en-only">Method 2: Request Deletion via Email (No App Required)</span>
+        </div>
+        <p class="lang-ar-only">
+          إذا لم يعد التطبيق مثبتاً على هاتفك، أو كنت ترغب في تقديم طلب حذف خارجي، يمكنك مراسلة فريق الدعم الفني من بريدك الإلكتروني المسجل في التطبيق وسنقوم بحذف الحساب وجميع البيانات خلال 24 إلى 48 ساعة كحد أقصى:
+        </p>
+        <p class="lang-en-only">
+          If you no longer have the app installed, or prefer to submit an external deletion request, email our support team from the email address associated with your account. We will permanently delete your account within 24 to 48 hours:
+        </p>
+
+        <a href="mailto:support.storley@gmail.com?subject=Storely%20Account%20Deletion%20Request&body=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AD%D8%B0%D9%81%20%D8%AD%D8%B3%D8%A7%D8%A8%D9%8A%20%D9%88%D8%AC%D9%85%D9%8A%D8%B9%20%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA%D9%8A%20%D9%85%D9%86%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20Storely.%0A%0A%D8%A7%D9%84%D8%A8%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%20%D9%84%D9%84%D8%AD%D8%B3%D8%A7%D8%A8:%20" class="btn-email-request">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          </svg>
+          <span class="lang-ar-only">إرسال طلب حذف الحساب (support.storley@gmail.com)</span>
+          <span class="lang-en-only">Send Deletion Request (support.storley@gmail.com)</span>
+        </a>
+      </div>
+
+      <!-- What is Deleted Table -->
+      <h3 class="lang-ar-only" style="margin: 24px 0 12px; font-weight: 800; font-size: 1.15rem;">البيانات التي يتم حذفها وما يتم الاحتفاظ به:</h3>
+      <h3 class="lang-en-only" style="margin: 24px 0 12px; font-weight: 800; font-size: 1.15rem;">Data Deleted vs Retained:</h3>
+
+      <table class="info-table">
+        <thead>
+          <tr>
+            <th><span class="lang-ar-only">نوع البيانات</span><span class="lang-en-only">Data Type</span></th>
+            <th><span class="lang-ar-only">الإجراء المتخذ</span><span class="lang-en-only">Action Taken</span></th>
+            <th><span class="lang-ar-only">مدة الاحتفاظ</span><span class="lang-en-only">Retention Period</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong><span class="lang-ar-only">الملف الشخصي والحساب (الاسم، البريد، كلمة المرور)</span><span class="lang-en-only">Profile & Account (Name, email, password)</span></strong></td>
+            <td><span class="lang-ar-only">حذف نهائي فوري من خوادم قاعدة البيانات</span><span class="lang-en-only">Permanently purged from database</span></td>
+            <td><span class="lang-ar-only">لا يتم الاحتفاظ بها</span><span class="lang-en-only">0 days (deleted immediately)</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="lang-ar-only">إعلانات السوق ومنشورات المجتمع</span><span class="lang-en-only">Marketplace Ads & Community Posts</span></strong></td>
+            <td><span class="lang-ar-only">حذف كامل للصور والنصوص والعناوين</span><span class="lang-en-only">Full deletion of media, text, and listings</span></td>
+            <td><span class="lang-ar-only">لا يتم الاحتفاظ بها</span><span class="lang-en-only">0 days</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="lang-ar-only">بيانات الخزنة المشفرة (Storely Vault)</span><span class="lang-en-only">Encrypted Vault Data</span></strong></td>
+            <td><span class="lang-ar-only">مخزنة ومحفوظة محلياً على جهازك فقط بتشفير المعرفة الصفرية؛ يمكنك مسحها فوراً بضغطة زر داخل التطبيق</span><span class="lang-en-only">Stored solely locally with zero-knowledge encryption; erased instantly via app wipe</span></td>
+            <td><span class="lang-ar-only">لا تحتفظ بها خوادمنا إطلاقاً</span><span class="lang-en-only">Never held by our servers</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p class="lang-ar-only">
+        © 2026 ستورلي (Storely). للاطلاع على التفاصيل الكاملة، راجع <a href="privacy.html">سياسة الخصوصية</a>.
+      </p>
+      <p class="lang-en-only">
+        © 2026 Storely. For full details, view our <a href="privacy.html">Privacy Policy</a>.
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    function setLang(lang) {
+      const isAr = lang === 'ar';
+      document.body.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+      document.documentElement.setAttribute('lang', lang);
+      document.getElementById('btn-ar').classList.toggle('active', isAr);
+      document.getElementById('btn-en').classList.toggle('active', !isAr);
+      localStorage.setItem('storely_lang', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('storely_lang');
+      if (savedLang === 'en' || savedLang === 'ar') {
+        setLang(savedLang);
+      } else {
+        const userLang = navigator.language || navigator.userLanguage || 'ar';
+        setLang(userLang.startsWith('ar') ? 'ar' : 'en');
+      }
+
+      // Match system theme
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.body.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
